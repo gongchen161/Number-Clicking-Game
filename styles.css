@@ -21,7 +21,7 @@ body {
   width: 40vw;
   height: 10vw;
   font-size: 8vw;
-  margin: 10px;
+  margin: 10px auto;
   background-color:yellow;
   font-weight: bold;
   color:red;
