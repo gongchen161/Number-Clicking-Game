@@ -4,23 +4,23 @@ body {
 }
 
 #game {
-	width:40vw;
+	width:32vw;
 	margin: 0 auto;
 }
 
 #btns button {
-  width: 10vw;
-  height: 10vw;
-  font-size: 5vw;
+  width: 8vw;
+  height: 8vw;
+  font-size: 4vw;
   margin: 0;
   float:left;
   font-weight: bold;
 }
 
 #play button {
-  width: 40vw;
-  height: 10vw;
-  font-size: 8vw;
+  width: 32vw;
+  height: 6vw;
+  font-size: 4vw;
   margin: 10px auto;
   background-color:yellow;
   font-weight: bold;

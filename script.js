@@ -1,7 +1,7 @@
 
 var btn = [];
-var len = 16;
 var play;
+var len = 16;
 
 var flag = new Array(100, false);
 var ans = [];
@@ -9,10 +9,10 @@ var curTerm = 0;
 var done = false;
 
 function init() {
+	flag = new Array(100, false);
+	ans = []
 	curTerm = 0;
 	done = false;
-	ans = []
-	flag = new Array(100, false);
 	for (var i = 0; i<len; i++) {
 		btn[i] = document.getElementById("btn"+i);
 
@@ -47,6 +47,10 @@ function init() {
 	ans.sort(function(a, b){return a - b});
 }
 
+
+play = document.getElementById("play");
 play.onclick = function() {
-		init();
+	init();
 }
+
+
