@@ -25,15 +25,21 @@ function init() {
 		ans.push(cur);
 
 		btn[i].onclick = function() {
+			if (done) {
+				alert("Click PLAY to play again");
+				return;
+			}
 			if (this.innerHTML == ans[curTerm]) {
 				this.innerHTML = "X";
 				curTerm++;
 
 				if (curTerm == 16) {
 					alert("You Won");
+					done = true;
 				}
 			} else {
-				alert(ans[curTerm]);
+				alert(ans[curTerm] + " is the next. You lose");
+				done = true;
 			}
 		}
 	}
