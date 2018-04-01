@@ -1,0 +1,28 @@
+body {
+	background-color: lightblue;
+	text-align: center;
+}
+
+#game {
+	width:40vw;
+	margin: 0 auto;
+}
+
+#btns button {
+  width: 10vw;
+  height: 10vw;
+  font-size: 5vw;
+  margin: 0;
+  float:left;
+  font-weight: bold;
+}
+
+#play button {
+  width: 40vw;
+  height: 10vw;
+  font-size: 8vw;
+  margin: 10px;
+  background-color:yellow;
+  font-weight: bold;
+  color:red;
+}
