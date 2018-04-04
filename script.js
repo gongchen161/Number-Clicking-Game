@@ -23,25 +23,6 @@ function init() {
 		flag[cur] = true;
 		btn[i].innerHTML = cur;
 		ans.push(cur);
-
-		btn[i].onclick = function() {
-			if (done) {
-				alert("Click PLAY to play again");
-				return;
-			}
-			if (this.innerHTML == ans[curTerm]) {
-				this.innerHTML = "X";
-				curTerm++;
-
-				if (curTerm == 16) {
-					alert("You Won");
-					done = true;
-				}
-			} else {
-				alert(ans[curTerm] + " is the next. You lose");
-				done = true;
-			}
-		}
 	}
 
 	ans.sort(function(a, b){return a - b});
@@ -53,4 +34,26 @@ play.onclick = function() {
 	init();
 }
 
+for (var i = 0; i<len; i++) {
+	btn[i] = document.getElementById("btn"+i);
+
+	btn[i].onclick = function() {
+		if (done) {
+			alert("Click PLAY to play again");
+			return;
+		}
+		if (this.innerHTML == ans[curTerm]) {
+			this.innerHTML = "X";
+			curTerm++;
+
+			if (curTerm == 16) {
+				alert("You Won");
+				done = true;
+			}
+		} else {
+			alert(ans[curTerm] + " is the next. You lose");
+			done = true;
+		}
+	}
+}
 
