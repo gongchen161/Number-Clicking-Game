@@ -20,13 +20,52 @@ function init() {
 		while (flag[cur]) {
 			cur = Math.floor(Math.random() * 100);
 		}
-		flag[cur] = true;
 		btn[i].innerHTML = cur;
+		btn[i].style.background = '';
+		flag[cur] = true;
 		ans.push(cur);
 	}
 
 	ans.sort(function(a, b){return a - b});
 }
+
+function clearField() {
+	for (var i = 0; i<len; i++) {
+		btn[i].innerHTML = "";
+	}
+}
+
+
+function displayWin() {
+	clearField();
+	btn[0].innerHTML = "Y";
+	btn[1].innerHTML = "O";
+	btn[2].innerHTML = "U";
+
+	btn[8].innerHTML = "W";
+	btn[9].innerHTML = "O";
+	btn[10].innerHTML = "N";
+	btn[11].innerHTML = "!";
+
+	btn[0].style.background = '#FF0000';
+	btn[1].style.background = '#FF0000';
+	btn[2].style.background = '#FF0000';
+	btn[8].style.background = '#FF0000';
+	btn[9].style.background = '#FF0000';
+	btn[10].style.background = '#FF0000';
+	btn[11].style.background = '#FF0000';
+
+}
+
+function displayLose() {
+	for (var i = 0; i<len; i++) {
+		if (btn[i].innerHTML == ans[curTerm]) {
+			btn[i].style.background = '#FF0000';
+		}
+	}
+	
+}
+
 
 
 play = document.getElementById("play");
@@ -39,7 +78,6 @@ for (var i = 0; i<len; i++) {
 
 	btn[i].onclick = function() {
 		if (done) {
-			alert("Click PLAY to play again");
 			return;
 		}
 		if (this.innerHTML == ans[curTerm]) {
@@ -47,11 +85,12 @@ for (var i = 0; i<len; i++) {
 			curTerm++;
 
 			if (curTerm == 16) {
-				alert("You Won");
+				displayWin();
 				done = true;
 			}
 		} else {
-			alert(ans[curTerm] + " is the next. You lose");
+			this.style.background = '#00FF00';
+			displayLose();
 			done = true;
 		}
 	}
