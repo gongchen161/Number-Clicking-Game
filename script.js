@@ -1,22 +1,44 @@
+let btn = [];
+let play;
+let len = 16;
 
-var btn = [];
-var play;
-var len = 16;
+let flag = new Array(100, false);
+let ans = [];
+let curTerm = 0;
+let done = false;
 
-var flag = new Array(100, false);
-var ans = [];
-var curTerm = 0;
-var done = false;
+let bn = document.getElementById("btns").getElementsByTagName("button");
+let py = document.getElementById("btnPlay"); 
+let timer = document.getElementById("timer"); 
+function adjustButtonSize() {
+	for(let i = 0; i < len; i++) {
+		bn[i].style.height = bn[0].clientWidth + "px";
+		bn[i].style.fontSize = bn[0].offsetWidth*0.5 + "px";
+	}
+	py.style.width = bn[0].clientWidth * 2 + "px";
+	py.style.height = bn[0].clientWidth * 0.8 + "px";
+	py.style.fontSize = bn[0].clientWidth * 0.5 + "px";
+	py.style.textAlign = "center";
+}
 
+window.onload = adjustButtonSize;
+document.addEventListener('DOMContentLoaded', adjustButtonSize, false);
+window.addEventListener("resize", adjustButtonSize, false);
+window.onload = adjustButtonSize;
+let timerInterval = null;
 function init() {
+	if(timerInterval != null) {
+		clearInterval(timerInterval);
+	}
+	timerInterval = null;
 	flag = new Array(100, false);
 	ans = []
 	curTerm = 0;
 	done = false;
-	for (var i = 0; i<len; i++) {
+	for (let i = 0; i<len; i++) {
 		btn[i] = document.getElementById("btn"+i);
 
-		var cur = Math.floor(Math.random() * 100);
+		let cur = Math.floor(Math.random() * 100);
 		while (flag[cur]) {
 			cur = Math.floor(Math.random() * 100);
 		}
@@ -27,10 +49,11 @@ function init() {
 	}
 
 	ans.sort(function(a, b){return a - b});
+	timer.innerHTML=0
 }
 
 function clearField() {
-	for (var i = 0; i<len; i++) {
+	for (let i = 0; i<len; i++) {
 		btn[i].innerHTML = "";
 	}
 }
@@ -58,12 +81,12 @@ function displayWin() {
 }
 
 function displayLose() {
-	for (var i = 0; i<len; i++) {
+	for (let i = 0; i<len; i++) {
 		if (btn[i].innerHTML == ans[curTerm]) {
 			btn[i].style.background = '#FF0000';
 		}
 	}
-	
+	timer.innerHTML += "     Game Over" 
 }
 
 
@@ -71,9 +94,14 @@ function displayLose() {
 play = document.getElementById("play");
 play.onclick = function() {
 	init();
+	let value = 0;
+	timerInterval = setInterval(() => {
+		value++;
+		timer.innerHTML = (Math.round(value) / 10).toFixed(1);
+	}, 100);
 }
 
-for (var i = 0; i<len; i++) {
+for (let i = 0; i<len; i++) {
 	btn[i] = document.getElementById("btn"+i);
 
 	btn[i].onclick = function() {
@@ -92,6 +120,9 @@ for (var i = 0; i<len; i++) {
 			this.style.background = '#00FF00';
 			displayLose();
 			done = true;
+		}
+		if(done && timerInterval != null) {
+			clearInterval(timerInterval);
 		}
 	}
 }
